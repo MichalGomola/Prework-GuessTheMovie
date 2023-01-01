@@ -3,17 +3,20 @@ public class Game {
     String title;
     String wrongLetters;
     char[] placeholders;
-    public void Game() {
+    public void game() {
         this.mistakes = 0;
-        this.title = "killer 2";
         this.wrongLetters = "";
+    }
+
+    public void getRandomTitle (String[] titles) {
+        int i = (int) (Math.random()*titles.length);
+        this.title = titles[i];
     }
     // update mistakes
     public void updateMistakes() {
         this.mistakes++;
     }
     // String title - get random title from file
-    // change title into char array
 
     // guessing array make array of '_' same lenght as movie title, use ' ' for spaces between words
     public void makePlaceholders() {

@@ -1,13 +1,17 @@
 import java.util.Arrays;
 import java.util.Scanner;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner scan = new Scanner(System.in);
         String guess;
         char chGuess;
-        // String title = "Killer";
+
+        Titles movies = new Titles();
+        movies.titles();
+
         Game game = new Game();
-        game.Game();
+        game.game();
+        game.getRandomTitle(movies.titles);
         game.makePlaceholders();
 
         while (game.mistakes < 10) {
@@ -26,13 +30,13 @@ public class Main {
                 game.updateWrongGuesses(guess);
             }
             if (Arrays.equals(game.placeholders, game.title.toCharArray())) {
-                System.out.println("You guessed right title! YOU WIN!");
+                System.out.println("\nYou guessed right title! YOU WIN!");
                 System.out.println("Title: " + game.title);
                 break;
             }
         }
         if (game.mistakes == 10) {
-            System.out.println("You lost!");
+            System.out.println("\nYou lost!");
             System.out.println("Title: " + game.title);
         }
 
