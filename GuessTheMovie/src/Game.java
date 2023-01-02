@@ -3,23 +3,30 @@ public class Game {
     String title;
     String wrongLetters;
     char[] placeholders;
-    public void game() {
+    Game(String[] titles) {
         this.mistakes = 0;
         this.wrongLetters = "";
+        this.title = this.getRandomTitle(titles);
+        this.makePlaceholders();
     }
 
-    public void getRandomTitle (String[] titles) {
+    /** method getRandomTitle - gets random title from an array of titles
+     * @param titles - String[]
+     *
+     * */
+    private String getRandomTitle (String[] titles) {
         int i = (int) (Math.random()*titles.length);
-        this.title = titles[i];
+        return titles[i];
     }
-    // update mistakes
+    // update mistakes count
     public void updateMistakes() {
         this.mistakes++;
     }
-    // String title - get random title from file
 
-    // guessing array make array of '_' same lenght as movie title, use ' ' for spaces between words
-    public void makePlaceholders() {
+    /** method makePlaceholders - makes guessing array of '_' same length as movie title,
+    * uses ' ' for spaces between words
+    * */
+    private void makePlaceholders() {
         this.placeholders = new char[this.title.length()];
 
         for (int i =0; i < this.title.length(); i++) {
@@ -31,7 +38,11 @@ public class Game {
         }
     }
 
-    // check if letter in title
+    /** method checkLetter - checks if letter is in title
+    * @param letter - char
+    * @return boolean
+    *
+    * */
     public boolean checkLetter(char letter) {
         char[] titleArray = this.title.toCharArray();
         for (char ch : titleArray) {
@@ -41,7 +52,11 @@ public class Game {
         }
         return false;
     }
-    // update guessing array
+
+    /** method upadatePlaceholders - updates guessing array with given letter
+     * @param guess - char
+     *
+     * */
     public void updatePlaceholders(char guess){
         char[] titleArray = this.title.toCharArray();
         for (int i = 0; i < this.placeholders.length; i++) {
@@ -53,21 +68,27 @@ public class Game {
         }
     }
 
-    // print guessing array
+    /** method printPlacehodlers - prints guessing array
+     * */
     public void printPlaceholders() {
-        System.out.print("You are guessing: ");
+        System.out.print("\nYou are guessing: ");
         for (int i = 0; i < this.placeholders.length; i++) {
             System.out.print(this.placeholders[i]);
         }
     }
-    // update wrong answers
+
+    /** method updateWrongGuesses - uptades wrong guess list
+     * @param guess - string
+     *
+     * */
     public void updateWrongGuesses (String guess){
         this.wrongLetters += guess + " ";
     }
     // print wrong answers
+    /** method printMistakes - prints wrong picks
+     * */
     public void printMistakes() {
-        System.out.println("You have guessed (" + this.mistakes + ") wrong letters: " + this.wrongLetters);
+        System.out.println("\nYou have guessed (" + this.mistakes + ") wrong letters: " + this.wrongLetters);
     }
-    // print lives
-    // check win condition
+
 }
